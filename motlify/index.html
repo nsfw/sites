@@ -1,0 +1,83 @@
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="motlify.js"></script>
+
+  <title>MÖTLIFY</title>
+  <style type="text/css">
+    <!--
+    body {
+    color: #270000;
+    background-color: #9cd7d2;
+    }
+
+    .title {
+    font-size: 4em;
+    background-color: #270000;
+    color: #9cd7d2;
+    }
+
+    input, select {
+    text-align: center;
+    font-size: 2em;
+    background: #eeeeee none repeat scroll 0 0;
+    border: 1px solid #101010;
+    margin: 0 1px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    padding: 10px; 
+    }
+    -->
+  </style>
+
+  <script type="text/javascript">
+
+// IE7 doesn't support map... jerks
+if (![].map) { // IE 7
+    Array.prototype.map = function(mapFunc) {
+        var mapped = [];
+        for (var i = 0; i < this.length; i++) {
+	        mapped.push(mapFunc(this[i]));
+	    }
+	    return mapped;
+    }
+}
+
+function forceUpdate(){
+    $("#output").hide().html(motlify($("input#str")[0].value)).fadeIn("slow");
+}
+
+function browserTweak(){
+    if(_browserFlag=="i") $("#output").css("font-size","6em");
+}
+
+$(browserTweak);
+$(forceUpdate);
+    </script>
+</head>
+
+<body>
+  <div class="title">
+    <center>
+      <script type="text/javascript">
+        document.writeln(motlify("MOTLIFY!"));
+      </script>
+    </center>
+  </div>
+  <div id="inputdiv">
+    <br/>
+    &nbsp;<br/>
+    <center>
+      <form id="form1" onsubmit="forceUpdate(); return false;" action="">
+        Make<br/> <input type="text" id="str" size="33"  onchange="forceUpdate();" value="What YOU type" /><br/>Awesome
+      </form>
+    </center>
+    <br/>
+  </div>
+  <center>
+    <div id="output" class="title">
+    </div>
+  </center>
+  
+</body>
+</html>
